@@ -1,0 +1,27 @@
+//
+// Kobold2D™ --- http://www.kobold2d.org
+//
+// Copyright (c) 2010-2011 Steffen Itterheim. 
+// Released under MIT License in Germany (LICENSE-Kobold2D.txt).
+//
+
+// ***************************************
+// Define some variables for later use
+// ***************************************
+
+// The Zlib (libz) library is needed by cocos2d.
+LINK_WITH_ZLIB = -lz
+
+// ***************************************
+// Actual compiler settings filled in here
+// ***************************************
+
+OTHER_LDFLAGS = $(inherited) $(LINK_WITH_ZLIB) -ObjC
+
+INFOPLIST_FILE = Projectfiles-Mac/Resources/Info.plist
+GCC_PREFIX_HEADER = Projectfiles/Prefix-Mac.pch
+
+// Chipmunk SpaceManager is not compatible with 64-Bit builds (last tested version: v0.1.1).
+// You may see effects like non-moving shapes, shapes disappearing, no collisions, and other bugs
+// when building to Mac 64-Bit. Hence the restriction to 32-Bit builds.
+ARCHS = $(ARCHS_STANDARD_32_BIT)

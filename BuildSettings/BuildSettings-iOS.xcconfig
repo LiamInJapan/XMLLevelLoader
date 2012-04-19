@@ -1,0 +1,36 @@
+//
+// Kobold2D™ --- http://www.kobold2d.org
+//
+// Copyright (c) 2010-2011 Steffen Itterheim. 
+// Released under MIT License in Germany (LICENSE-Kobold2D.txt).
+//
+
+// ***************************************
+// Define some variables for later use
+// ***************************************
+
+// The Zlib (libz) library is needed by cocos2d.
+LINK_WITH_ZLIB = -lz
+
+// Some libraries must be force loaded if they contain Objective-C categories
+// See: http://stackoverflow.com/questions/2567498/objective-c-categories-in-static-library
+FORCE_LOAD_KOBOLD2D = -force_load $(BUILT_PRODUCTS_DIR)/libkobold2d-ios.a
+
+// Comment this line if you don't want or need iSimulate. Doing so will also remove the "incoming network connection"
+// warning dialog in Simulator builds.
+FORCE_LOAD_ISIMULATE = -force_load $(KKLIBROOT)/iSimulateSDK/libisimulate-4.x-opengl.a
+
+// Cocos3D library must be force loaded but is not included by default because most projects won't need it.
+// IF you want to use Cocos3D library you must uncomment the following line!
+// Note: force loading the cocos3d library adds between 300Kb to 1500 Kb to your App's size, that's why it's not included by default.
+//FORCE_LOAD_COCOS3D = -force_load $(BUILT_PRODUCTS_DIR)/libcocos3d-ios.a
+
+// ***************************************
+// Actual compiler settings filled in here
+// ***************************************
+
+OTHER_LDFLAGS = $(inherited) $(LINK_WITH_ZLIB) $(FORCE_LOAD_KOBOLD2D) $(FORCE_LOAD_COCOS3D)
+OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*] = $(OTHER_LDFLAGS) $(FORCE_LOAD_ISIMULATE)
+
+INFOPLIST_FILE = Projectfiles-iOS/Resources/Info.plist
+GCC_PREFIX_HEADER = Projectfiles/Prefix-iOS.pch
