@@ -1,1 +1,9 @@
 This is (will be?) an xml level loader thing for cocos2d/chipmunk!
+
+Note it only really works on an iPad device at the moment (it uses tilt so doesn't work for simulator, and all 
+the resolutions are for iPad only)
+
+Future Additions:
+- Portals to properly move between "rooms"
+- Some better control variations
+- iPhone compatible
